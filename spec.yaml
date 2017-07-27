@@ -57,36 +57,37 @@ paths:
         400:
           description: bad input parameter
   /deposit:
-    tags:
-      - market
-    summary: Deposit
-    operationId: deposit
-    description: |
-      Deposit
-    produces:
-      - application/json
-    parameters:
-    - in: body
-      name: body
-      required: true
-      schema:
-        type: object
-        properties: 
-          api_key: 
-            type: string
-            example: "dknsAKJNKDNASKDNksNDskdNSDKNKJNDkNASDKJnskjDNKSADNsjd"
-          project_id: 
-            type: integer
-            example: 12
-          tradeoffer:
-            $ref: '#/definitions/TradeOfferToSend'
-    responses:
-      200:
-        description: success response
+    get:
+      tags:
+        - market
+      summary: Deposit
+      operationId: deposit
+      description: |
+        Deposit
+      produces:
+        - application/json
+      parameters:
+      - in: body
+        name: body
+        required: true
         schema:
-          $ref: '#/definitions/Transaction'
-      400:
-        description: bad input parameter
+          type: object
+          properties: 
+            api_key: 
+              type: string
+              example: "dknsAKJNKDNASKDNksNDskdNSDKNKJNDkNASDKJnskjDNKSADNsjd"
+            project_id: 
+              type: integer
+              example: 12
+            tradeoffer:
+              $ref: '#/definitions/TradeOfferToSend'
+      responses:
+        200:
+          description: success response
+          schema:
+            $ref: '#/definitions/Transaction'
+        400:
+          description: bad input parameter
 
 
   /tradeoffers:
@@ -145,9 +146,8 @@ paths:
             project_id: 
               type: integer
               example: 12
-            tr  adeoffer:
-
-            $ref: '#/definitions/TradeOfferToSend'
+            tradeoffer:
+              $ref: '#/definitions/TradeOfferToSend'
       responses:
         200:
           description: success response
