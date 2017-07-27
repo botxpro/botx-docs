@@ -23,11 +23,11 @@ tags:
   description: Virtual steam bot
 
 paths:
-  /individual/tradeoffers:
+  /tradeoffers:
     get:
       tags:
         - individual
-      summary: list of all tradeoffers
+      summary: List of all tradeoffers
       operationId: getTradeoffers
       description: |
         Get all project tradeoffers
@@ -46,18 +46,21 @@ paths:
         200:
           description: success response
           schema:
-            $ref: '#/definitions/TradeOfferToSend'
-          #   meta:
-          #     type: object
-          #   tradeoffers: 
-          #     type: array
+            type: object
+            properties: 
+              meta:
+                type: object
+              tradeoffers:
+                type: array
+                items:
+                  $ref: '#/definitions/TradeOfferToSend'
         400:
           description: bad input parameter
 
     post:
       tags:
         - individual
-      summary: send tradeoffer
+      summary: Send TradeOffer
       operationId: sendTradeoffer
       description: |
         Send TradeOffer
@@ -77,69 +80,73 @@ paths:
         400:
           description: bad input parameter
 
-  /inventory:
+  /tradeoffers/{tradeoffer_id}:
     get:
       tags:
-      - market
-      summary: searches inventory
-      operationId: searchInventory
+        - individual
+      summary: Get tradeoffer by id
+      operationId: getTradeoffer
       description: |
-        By passing in the appropriate options, you can search for
-        available inventory in the system
-      produces:
-      - application/json
+        Get tradeoffer by id
       parameters:
+      - in: path
+        name: tradeoffer_id
+        description: tradeoffer id
+        required: true
+        type: integer
       - in: query
-        name: searchString
-        description: pass an optional search string for looking up inventory
-        required: false
+        name: project_id
+        description: project id
+        required: true
+        type: integer
+      - in: query
+        name: api_key
+        description: api key
+        required: true
         type: string
-      - in: query
-        name: skip
-        description: number of records to skip for pagination
-        type: integer
-        format: int32
-        minimum: 0
-      - in: query
-        name: limit
-        description: maximum number of records to return
-        type: integer
-        format: int32
-        minimum: 0
-        maximum: 50
       responses:
         200:
-          description: search results matching criteria
-        #   schema:
-        #     meta:
-        #       type: object
-              
-        #     type: array
+          description: success response
+          schema:
+            $ref: '#/definitions/TradeOfferToSend'
         400:
           description: bad input parameter
-    post:
+
+  /tradeoffers/inventories:
+    get:
       tags:
-      - individual
-      summary: adds an inventory item
-      operationId: addInventory
-      description: Adds an item to the system
-      consumes:
-      - application/json
-      produces:
-      - application/json
+        - individual
+        - market
+      summary: Get user inventory
+      operationId: getUserInventoryIndividual
+      description: |
+        Get user inventory
       parameters:
-      - in: body
-        name: inventoryItem
-        description: Inventory item to add
-        schema:
-          $ref: '#/definitions/InventoryItem'
+      - in: query
+        name: project_id
+        description: project id
+        required: true
+        type: integer
+      - in: query
+        name: api_key
+        description: api key
+        required: true
+        type: string
+      - in: query
+        name: uid
+        description: steam id
+        required: true
+        type: string
       responses:
-        201:
-          description: item created
+        200:
+          description: success response
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/SteamItem'
         400:
-          description: invalid input, object invalid
-        409:
-          description: an existing item already exists
+          description: bad input parameter
+
 definitions:
   TradeOfferToSend: 
     type: object
@@ -201,11 +208,11 @@ definitions:
           items_to_receive:
             type: array
             items: 
-              $ref: '#/definitions/SteamifiedItem'
+              $ref: '#/definitions/SteamItem'
           items_to_give:
             type: array
             items:
-              $ref: '#/definitions/SteamifiedItem'
+              $ref: '#/definitions/SteamItem'
         description: (optional)
   SteamifiedItem:
     type: object
@@ -223,27 +230,99 @@ definitions:
       appid:
         type: integer
         example: 730
-  InventoryItem:
+
+  SteamItem:
     type: object
-    required:
-    - id
-    - name
-    - releaseDate
     properties:
-      id:
+      assetid:
         type: string
-        format: uuid
-        example: d290f1ee-6c54-4b01-90e6-d701748f0851
+        example: "11123456789"
+      instanceid:
+        type: string
+        example: "11123456789"
+      contextid:
+        type: string
+        example: "11123456789"
+      contexid:
+        type: integer
+        example: 2
+      appid:
+        type: integer
+        example: 730
+      market_hash_name:
+        type: string
+        example: "MAG-7 | Heaven Guard (Minimal Wear)"
       name:
         type: string
-        example: Widget Adapter
-      releaseDate:
+        example: "MAG-7 | Heaven Guard"
+      name_color:
         type: string
-        format: int32
-        example: 2016-08-29T09:12:33.001Z
+        example: "D2D2D2"
+      background_color:
+        type: string
+        example: ""
+      type:
+        type: string
+        example: "Mil-Spec Grade Shotgun"
+      marketable:
+        type: boolean
+        example: true
+      tradable:
+        type: boolean
+        example: true
+      description:
+        type: array
+        items:
+          type: object
+          properties:
+            type:
+              type: string
+              example: "html"
+            value:
+              type: string
+              example: "Exterior: Minimal Wear"
+      tags:
+        type: array
+        items:
+          type: object
+          properties:
+            internal_name:
+              type: string
+              example: "CSGO_Type_Shotgun"
+            name:
+              type: string
+              example: "Shotgun"
+            category:
+              type: string
+              example: "Type"
+            category_name:
+              type: string
+              example: "Type"
+            color:
+              type: string
+              example: ""
+      prices:
+        type: object
+        properties:
+          our_price:
+            type: string
+            example: "0.07"
+          steam_price:
+            type: string
+            example: "0.10"
+          state:
+            type: string
+            example: "available"
+          last_updated:
+            type: string
+            example: "2017-07-18"
+
+
+
+
 # Added by API Auto Mocking Plugin
 host: api.botx.pro
-basePath: /v1/remote
+basePath: /v1/remote/{project_type}
 schemes:
  - https
  # - http
