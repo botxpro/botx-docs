@@ -53,7 +53,7 @@ paths:
               tradeoffers:
                 type: array
                 items:
-                  $ref: '#/definitions/TradeOfferToSend'
+                  $ref: '#/definitions/TradeOffer'
         400:
           description: bad input parameter
 
@@ -108,7 +108,7 @@ paths:
         200:
           description: success response
           schema:
-            $ref: '#/definitions/TradeOfferToSend'
+            $ref: '#/definitions/TradeOffer'
         400:
           description: bad input parameter
 
@@ -148,6 +148,55 @@ paths:
           description: bad input parameter
 
 definitions:
+  TradeOffer:
+    type: object
+    description: (optional)
+    properties:
+      offer_id: 
+        type: string
+        example: "2340564619"
+      is_our_offer: 
+        type: boolean
+        example: true
+      partner: 
+        type: string
+        example: "76561198078016715"
+      message: 
+        type: string
+        example: "privet"
+      state: 
+        type: integer
+        example: 2
+      state_name: 
+        type: string
+        example: "Active"
+      expires: 
+        type: string
+        example: "2017-08-10"
+      bot_id: 
+        type: string
+        example: "76561198350509648"
+      oncancel_state: 
+        type: string
+        example: "canceled"
+      oncomplete_state: 
+        type: string
+        example: "available"
+      created_at: 
+        type: string
+        example: "2017-07-27T15:22:40.265+00:00"
+      updated_at: 
+        type: string
+        example: "2017-07-27T15:22:40.268+00:00"
+      items_to_receive:
+        type: array
+        items: 
+          $ref: '#/definitions/SteamItem'
+      items_to_give:
+        type: array
+        items:
+          $ref: '#/definitions/SteamItem'
+
   TradeOfferToSend: 
     type: object
     required: 
@@ -202,6 +251,8 @@ definitions:
       type:
         type: string
         example: "send_offer" 
+      tradeoffer:
+        $ref: '#/definitions/TradeOffer'  
       details: 
         type: object
         properties:
@@ -231,7 +282,7 @@ definitions:
         type: integer
         example: 730
 
-  SteamItem:
+  SteamItem:          #steam_item
     type: object
     properties:
       assetid:
