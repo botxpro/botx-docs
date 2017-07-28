@@ -23,7 +23,8 @@ tags:
   description: Virtual steam bot
 
 paths:
-  /items:
+
+  /market/items:
     get:
       tags:
         - market
@@ -56,8 +57,9 @@ paths:
                   $ref: '#/definitions/SteamItem'
         400:
           description: bad input parameter
-  /deposit:
-    get:
+
+  /market/deposit:
+    post:
       tags:
         - market
       summary: Deposit
@@ -79,8 +81,26 @@ paths:
             project_id: 
               type: integer
               example: 12
-            tradeoffer:
-              $ref: '#/definitions/TradeOfferToSend'
+            deposit:
+              type: object
+              required: 
+              - uid
+              - token
+              - message
+              properties:
+                uid: 
+                  type: string
+                  example: "76561118123456789"  
+                token: 
+                  type: string
+                  example: "bT7eJeTC"
+                message: 
+                  type: string
+                  example: "hello, my dear friend!"
+                their_items:
+                  type: array
+                  items: 
+                    $ref: '#/definitions/SteamifiedItem'
       responses:
         200:
           description: success response
@@ -89,8 +109,94 @@ paths:
         400:
           description: bad input parameter
 
+  /market/withdraw:
+    post:
+      tags:
+        - market
+      summary: Withdraw
+      operationId: withdraw
+      description: |
+        Withdraw
+      produces:
+        - application/json
+      parameters:
+      - in: body
+        name: body
+        required: true
+        schema:
+          type: object
+          properties: 
+            api_key: 
+              type: string
+              example: "dknsAKJNKDNASKDNksNDskdNSDKNKJNDkNASDKJnskjDNKSADNsjd"
+            project_id: 
+              type: integer
+              example: 12
+            withdraw:
+              type: object
+              required: 
+              - uid
+              - token
+              - message
+              properties:
+                uid: 
+                  type: string
+                  example: "76561118123456789"  
+                token: 
+                  type: string
+                  example: "bT7eJeTC"
+                message: 
+                  type: string
+                  example: "hello, my dear friend!"
+                my_items:
+                  type: array
+                  items: 
+                    $ref: '#/definitions/SteamifiedItem'
+      responses:
+        200:
+          description: success response
+          schema:
+            $ref: '#/definitions/Transaction'
+        400:
+          description: bad input parameter
 
-  /tradeoffers:
+  /market/inventories:
+    get:
+      tags:
+        - market
+      summary: Get user inventory
+      operationId: getUserInventoryMarket
+      description: |
+        Get user inventory
+      parameters:
+      - in: query
+        name: project_id
+        description: project id
+        required: true
+        type: integer
+      - in: query
+        name: api_key
+        description: api key
+        required: true
+        type: string
+      - in: query
+        name: uid
+        description: steam id
+        required: true
+        type: string
+      responses:
+        200:
+          description: success response
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/SteamItem'
+        400:
+          description: bad input parameter
+
+#############################################
+
+  /individual/tradeoffers:
     get:
       tags:
         - individual
@@ -156,7 +262,7 @@ paths:
         400:
           description: bad input parameter
 
-  /tradeoffers/{tradeoffer_id}:
+  /individual/tradeoffers/{tradeoffer_id}:
     get:
       tags:
         - individual
@@ -188,11 +294,10 @@ paths:
         400:
           description: bad input parameter
 
-  /tradeoffers/inventories:
+  /individual/inventories:
     get:
       tags:
         - individual
-        - market
       summary: Get user inventory
       operationId: getUserInventoryIndividual
       description: |
@@ -222,6 +327,8 @@ paths:
               $ref: '#/definitions/SteamItem'
         400:
           description: bad input parameter
+
+##############################################
 
 definitions:
   TradeOffer:
@@ -449,7 +556,7 @@ definitions:
 
 # Added by API Auto Mocking Plugin
 host: api.botx.pro
-basePath: /v1/remote/{project_type}
+basePath: /v1/remote
 schemes:
  - https
  # - http
