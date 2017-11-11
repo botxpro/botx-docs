@@ -352,6 +352,11 @@ paths:
         description: page
         required: false
         type: integer
+      - in: query
+        name: per_page
+        description: items per page
+        required: false
+        type: integer
       responses:
         200:
           description: success response
