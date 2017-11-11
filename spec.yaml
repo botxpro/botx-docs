@@ -333,7 +333,7 @@ paths:
       tags:
         - individual
       summary: List of all individual items
-      operationId: getMarketItems
+      operationId: getIndividualItems
       description: |
         List of all individual items
       parameters:
