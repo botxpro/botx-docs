@@ -347,6 +347,11 @@ paths:
         description: api key
         required: true
         type: string
+      - in: query
+        name: page
+        description: page
+        required: false
+        type: integer
       responses:
         200:
           description: success response
