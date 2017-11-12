@@ -35,6 +35,14 @@ info:
 
     Example: SHA256 {3245}{7}{deposit}{0.12}{0.17}{completed}{odfkaposmlkdasld}
 
+    # Our libraries
+
+    We have libraries:
+      - [PHP (BotxLib)](https://github.com/botxpro/botxlib-php)
+      - Ruby (Comming soon)
+      - Node.js (Comming soon)
+      - Python (Comming soon)
+
     # Identifying Steam Items
 
     You can read more about it [HERE](https://dev.doctormckay.com/topic/332-identifying-steam-items/)
