@@ -521,6 +521,11 @@ definitions:
             items:
               $ref: '#/definitions/SteamItem'
         description: (optional)
+      hash:
+        type: string
+        example: "f990af75283f6917c0d88d89fc506b01cd91fab57e517b6f560cec49ad8b381f"
+        description: |
+          [Transaction signature](#section/Transaciton-signature)
   SteamifiedItem:
     type: object
     required: 
@@ -627,7 +632,7 @@ definitions:
         type: string
         example: "f990af75283f6917c0d88d89fc506b01cd91fab57e517b6f560cec49ad8b381f"
         description: |
-          [Item signature](#item-signature)
+          [Item signature](#section/Item-signature)
 
 #####################################################
 
