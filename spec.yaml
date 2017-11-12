@@ -37,9 +37,9 @@ info:
     Example: SHA256 {3245}{7}{deposit}{0.12}{0.17}{completed}{odfkaposmlkdasld}
 
 
-  # x-logo:
-  #   url: logo.png
-  #   backgroundColor: "#263238"
+  x-logo:
+    url: https://botx.pro/img/new_landing/site-logo.png
+    backgroundColor: "#fff"
 
 # tags are used for organizing operations
 tags:
@@ -625,6 +625,12 @@ definitions:
           state:
             type: string
             example: "available"
+            enum:
+              - available
+              - banned
+          reason:
+            type: string
+            example: "errors.deposit_limitation"
           last_updated:
             type: string
             example: "2017-07-18"
