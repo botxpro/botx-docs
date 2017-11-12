@@ -10,7 +10,8 @@ info:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
   description: |
-    # Item signature
+    [# Item signature](#item-signature)
+    
     
     Item signature is a SHA256-hash that consists of:
       - appid
@@ -22,7 +23,7 @@ info:
 
     Example: SHA256 {730}{2}{1231232}{0.12}{0.17}{odfkaposmlkdasld}
     
-    # Transaction signature
+    [# Transaction signature](#transaction-signature)
     
     Item signature is a SHA256-hash that consists of:
       - transaction id
@@ -32,7 +33,7 @@ info:
       - steam amount
       - transaction state
       - project api key
-      
+
     Example: SHA256 {3245}{7}{deposit}{0.12}{0.17}{completed}{odfkaposmlkdasld}
 
 
@@ -622,6 +623,11 @@ definitions:
           last_updated:
             type: string
             example: "2017-07-18"
+      hash:
+        type: string
+        example: "f990af75283f6917c0d88d89fc506b01cd91fab57e517b6f560cec49ad8b381f"
+        description: |
+          [Item signature](#item-signature)
 
 #####################################################
 
