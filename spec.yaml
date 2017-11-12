@@ -35,6 +35,23 @@ info:
 
     Example: SHA256 {3245}{7}{deposit}{0.12}{0.17}{completed}{odfkaposmlkdasld}
 
+    # Identifying Steam Items
+
+    Sometimes it can be a little confusing to identify a specific item in the Steam economy. There are several different types of IDs present in one particular item, and a lot of vague terminology. This guide aims to clear all that up for you.
+
+    For starters, the "official" term for a Steam item is an asset. When I say a "Steam item", I mean a particular copy of an item. I'm not referring to the item's definition, name, image, or anything. I'm referring to a specific, unique copy of the item.
+
+    In a general sense, every item on Steam must be owned by an app. An "app" is a game, software, or whatever on Steam. Every app has its own unique AppID. You can find a particular game's AppID by going to its store page or community hub and looking at the URL. For example, TF2's AppID is 440 so TF2's store page can be found at http://store.steampowered.com/app/440. CS:GO's is 730, Dota 2's is 570, and so on. Note that Steam Community items, Steam gifts, and other "Steam" items are owned by the "Steam" app, which has AppID 753. To identify an item, you'll need the AppID of the game which owns it.
+
+    Of course, the AppID alone isn't enough. You also need two other IDs. Have you ever noticed how some games have multiple inventories, which appear in a drop-down list? An example is the Steam inventory, which has sub-inventories for "Community", "Gifts", "Coupons", etc. These "sub-inventories" are called contexts, and each context has its own context ID. If a game doesn't have a drop-down menu to select a context, that doesn't mean that it's without contexts. That only means that it has one single visible context. That single context still has an ID. For all current Valve games, the context ID for the publicly-visible context is 2.
+
+    Context IDs can be a bit tricky. It's entirely up to the game's developer to determine how they work. For example, Valve games take the "single shared inventory" model in which there's one context ID which is shared by everyone. Under this model, an item belongs to one particular context and never leaves that context. Consequently, the item's context ID never changes. It is, however, possible for game developers to create contexts in any way they choose. For example, Spiral Knights uses the "per-character inventory" model in which everyone who plays the game has their own context IDs for their characters. Creating a new character creates a new context ID. This means that when an item is traded between users, its context ID will change as it moved out of a particular character's inventory.
+
+    Those are the two different types of "containers" in the Steam economy. Apps own contexts, and contexts own assets. Every asset on Steam has, in addition to its AppID and context ID, an asset ID which is guaranteed to be unique inside of a given AppID+ContextID combination. Notice that this means that asset IDs are not unique across all of Steam. They aren't even unique across a particular app. They are only unique inside of a given context. For example, there could be two items with asset ID 1 in the same game, as long as they have different context IDs. An item's asset ID may be referred to as "assetid" or just plain "id".
+
+    Context IDs and asset IDs are assigned by the game developer and can follow any pattern. They can change when traded or not. They may both be up to 64 bits in size. Consequently, Steam returns them (like all other 64-bit values) in JSON as strings.
+
+    Still following? All of what we've learned so far leads us to this conclusion: in order to uniquely identify an item, you need its AppID, its context ID, and its asset ID. Once you have these three things, only then can you uniquely identify it. In fact, this is how you link to a particular item in a user's inventory: steamcommunity.com/profiles/steamid/inventory#appid_contextid_assetid. Here's an example: https://steamcommuni...440_2_134161610
 
   x-logo:
     url: botx.png
