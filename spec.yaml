@@ -537,19 +537,6 @@ definitions:
       assetid:
         type: string
         example: "11123456789"
-      contextid:
-        type: integer
-        example: 2
-      appid:
-        type: integer
-        example: 730
-
-  SteamItem:
-    type: object
-    properties:
-      assetid:
-        type: string
-        example: "11123456789"
         description: |
           It's unique identificator of item for the current appid and contextid
       contextid:
@@ -566,6 +553,12 @@ definitions:
           You can find a particular game's AppID by going to its store page or community hub and looking at the URL.
           For example, TF2's AppID is 440 so TF2's store page can be found at http://store.steampowered.com/app/440.
           CS:GO's is 730, Dota 2's is 570, and so on.
+
+  SteamItem:
+    type: object
+    $ref: "#/definitions/SteamifiedItem"
+    properties:
+
 
 
       instanceid:
