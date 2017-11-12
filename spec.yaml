@@ -108,7 +108,11 @@ paths:
             $projectId = 12;
             $apiKey = "asdasdasdasd";
             $projectType = "market";
-            $botx = new Botx($projectId, $apiKey, $projectType);
+            $botx = new Botx(
+              $projectId,
+              $apiKey,
+              $projectType
+            );
 
             $params = [];
             // $params['tags'] = $request->get('tags');
