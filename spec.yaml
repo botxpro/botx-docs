@@ -58,7 +58,16 @@ paths:
       description: |
         List of all market items
       parameters:
-        $ref: "#/definitions/AuthParams"
+      - in: query
+        name: project_id
+        description: project id
+        required: true
+        type: integer
+      - in: query
+        name: api_key
+        description: api key
+        required: true
+        type: string
       responses:
         200:
           description: success response
@@ -395,26 +404,24 @@ paths:
 
 definitions:
   AuthParams:
-    type: array
-    items:
-      - name: api_key
+    type: object
+    properties:
+      api_key:
         type: string
         example: "adasdpaokdpaokd"
-        required: true
-      - name: project_id
+      project_id:
         type: integer
         example: 12
-        required: true
 
-  # MetaParams:
-  #   type: array
-  #   items:
-  #     - page: 
-  #       type: integer
-  #       example: 2
-  #     - per_page:
-  #       type: integer
-  #       example: 50
+  MetaParams:
+    type: object
+    properties:
+      page: 
+        type: integer
+        example: 2
+      per_page:
+        type: integer
+        example: 50
 
   Meta:
     type: object
