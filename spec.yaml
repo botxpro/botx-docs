@@ -38,8 +38,8 @@ info:
 
 
   x-logo:
-    url: https://botx.pro/img/new_landing/site-logo.png
-    backgroundColor: "#fff"
+    url: botx.png
+    # backgroundColor: "#fff"
 
 # tags are used for organizing operations
 tags:
