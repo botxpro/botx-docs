@@ -1,6 +1,6 @@
 swagger: '2.0'
 info:
-  version: 1.0.0
+  version: 1.2.4
   title: BotX.pro | API Documentation
   # put the contact info for your development or API team
   contact:
