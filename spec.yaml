@@ -557,8 +557,8 @@ definitions:
   SteamItem:
     type: object
     allOf:
-      - $ref: "#/definitions/SteamifiedItem"
-      - type: object
+    - $ref: "#/definitions/SteamifiedItem"
+    - type: object
       properties:
         instanceid:
           type: string
