@@ -45,25 +45,25 @@ info:
 
 # tags are used for organizing operations
 tags:
-- name: market
+- name: market api
   description: Market project types
-- name: individual
+- name: individual api
   description: Virtual steam bot
 
 x-tagGroups:
-  - name: Market Api
+  - name: Market
     tags:
-      - market
-  - name: Individual Api
+      - market api
+  - name: Individual
     tags:
-      - individual
+      - individual api
 
 paths:
 
   /market/items:
     get:
       tags:
-        - market
+        - market api
       summary: List of all market items
       operationId: getMarketItems
       description: |
@@ -97,7 +97,7 @@ paths:
   /market/deposit:
     post:
       tags:
-        - market
+        - market api
       summary: Deposit
       operationId: deposit
       description: |
@@ -148,7 +148,7 @@ paths:
   /market/withdraw:
     post:
       tags:
-        - market
+        - market api
       summary: Withdraw
       operationId: withdraw
       description: |
@@ -199,7 +199,7 @@ paths:
   /market/inventories:
     get:
       tags:
-        - market
+        - market api
       summary: Get user inventory
       operationId: getUserInventoryMarket
       description: |
@@ -235,7 +235,7 @@ paths:
   /individual/items:
     get:
       tags:
-        - individual
+        - individual api
       summary: List of all individual items
       operationId: getIndividualItems
       description: |
@@ -279,7 +279,7 @@ paths:
   /individual/tradeoffers:
     get:
       tags:
-        - individual
+        - individual api
       summary: List of all tradeoffers
       operationId: getTradeoffers
       description: |
@@ -312,7 +312,7 @@ paths:
 
     post:
       tags:
-        - individual
+        - individual api
       summary: Send TradeOffer
       operationId: sendTradeoffer
       description: |
@@ -345,7 +345,7 @@ paths:
   /individual/tradeoffers/{tradeoffer_id}:
     get:
       tags:
-        - individual
+        - individual api
       summary: Get tradeoffer by id
       operationId: getTradeoffer
       description: |
@@ -377,7 +377,7 @@ paths:
   /individual/inventories:
     get:
       tags:
-        - individual
+        - individual api
       summary: Get user inventory
       operationId: getUserInventoryIndividual
       description: |
