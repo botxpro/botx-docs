@@ -12,7 +12,6 @@ info:
   description: |
     # Item signature
     
-    
     Item signature is a SHA256-hash that consists of:
       - appid
       - contextid
@@ -477,6 +476,7 @@ definitions:
         type: array
         items: 
           $ref: '#/definitions/SteamifiedItem'
+
   Transaction:
     type: object
     properties:
@@ -526,41 +526,51 @@ definitions:
         example: "f990af75283f6917c0d88d89fc506b01cd91fab57e517b6f560cec49ad8b381f"
         description: |
           [Transaction signature](#section/Transaciton-signature)
+
   SteamifiedItem:
     type: object
     required: 
     - assetid
-    - contexid
+    - contextid
     - appid
     properties:
       assetid:
         type: string
         example: "11123456789"
-      contexid:
+      contextid:
         type: integer
         example: 2
       appid:
         type: integer
         example: 730
 
-  SteamItem:          #steam_item
+  SteamItem:
     type: object
     properties:
       assetid:
         type: string
         example: "11123456789"
-      instanceid:
-        type: string
-        example: "11123456789"
+        description: |
+          It's unique identificator of item for the current appid and contextid
       contextid:
-        type: string
-        example: "11123456789"
-      contexid:
         type: integer
         example: 2
+        description: |
+          It's a context id of item
       appid:
         type: integer
         example: 730
+        description: |
+          Every item on Steam must be owned by an app.
+          Every app has its own unique AppID.
+          You can find a particular game's AppID by going to its store page or community hub and looking at the URL.
+          For example, TF2's AppID is 440 so TF2's store page can be found at http://store.steampowered.com/app/440.
+          CS:GO's is 730, Dota 2's is 570, and so on.
+
+
+      instanceid:
+        type: string
+        example: "11123456789"
       market_hash_name:
         type: string
         example: "MAG-7 | Heaven Guard (Minimal Wear)"
@@ -619,18 +629,29 @@ definitions:
           our_price:
             type: string
             example: "0.07"
+            description:
+              Item price equivalent in USD (real price)
           steam_price:
             type: string
             example: "0.10"
+            description:
+              Item price in Steam Community Market ([SteamAnalyst.com](https://steamanalyst.com))
           state:
             type: string
             example: "available"
             enum:
               - available
               - banned
+            description: |
+              BotX analyze all prices in the Steam Community Market and ban every item with unstable price
           reason:
             type: string
             example: "errors.deposit_limitation"
+            enum:
+              - errors.deposit_limitation
+              - errors.withdraw_limitation
+            description: |
+              Reason why we ban this item with our BotX analyst system
           last_updated:
             type: string
             example: "2017-07-18"
