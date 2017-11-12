@@ -102,6 +102,12 @@ paths:
         400:
           description: bad input parameter
 
+      x-code-samples:
+        - lang: PHP
+          source: |
+            $form = new \\PetStore\\Entities\\Pet();\n$form->setPetType(\"Dog\");\n$form->setName(\"Rex\");\n// set other fields\ntry {\n    $pet = $client->pets()->create($form);\n} catch (UnprocessableEntityException $e) {\n    var_dump($e->getErrors());\n}\n
+
+
   /market/deposit:
     post:
       tags:
