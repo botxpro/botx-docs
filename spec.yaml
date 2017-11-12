@@ -50,6 +50,14 @@ tags:
 - name: individual
   description: Virtual steam bot
 
+x-tagGroups:
+  - name: Market Api
+    tags:
+      - market
+  - name: Individual Api
+    tags:
+      - individual
+
 paths:
 
   /market/items:
