@@ -58,16 +58,7 @@ paths:
       description: |
         List of all market items
       parameters:
-      - in: query
-        name: project_id
-        description: project id
-        required: true
-        type: integer
-      - in: query
-        name: api_key
-        description: api key
-        required: true
-        type: string
+        $ref: "#/definitions/AuthParams"
       responses:
         200:
           description: success response
@@ -75,7 +66,7 @@ paths:
             type: object
             properties: 
               meta:
-                type: object
+                $ref: "#/definitions/Meta"
               items:
                 type: array
                 items:
@@ -257,7 +248,7 @@ paths:
             type: object
             properties: 
               meta:
-                type: object
+                $ref: "#/definitions/Meta"
               items:
                 type: array
                 items:
@@ -291,7 +282,7 @@ paths:
             type: object
             properties: 
               meta:
-                type: object
+                $ref: "#/definitions/Meta"
               tradeoffers:
                 type: array
                 items:
@@ -403,6 +394,45 @@ paths:
 ##############################################
 
 definitions:
+  AuthParams:
+    type: array
+    items:
+      - name: api_key
+        type: string
+        example: "adasdpaokdpaokd"
+        required: true
+      - name: project_id
+        type: integer
+        example: 12
+        required: true
+
+  # MetaParams:
+  #   type: array
+  #   items:
+  #     - page: 
+  #       type: integer
+  #       example: 2
+  #     - per_page:
+  #       type: integer
+  #       example: 50
+
+  Meta:
+    type: object
+    required: 
+      - total
+      - total_pages
+      - page
+    properties:
+      total:
+        type: integer
+        example: 100
+      total_pages:
+        type: integer
+        example: 4
+      page:
+        type: integer
+        example: 1
+
   TradeOffer:
     type: object
     description: (optional)
