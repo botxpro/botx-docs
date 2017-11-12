@@ -105,8 +105,27 @@ paths:
       x-code-samples:
         - lang: PHP
           source: |
-            $form = new \\PetStore\\Entities\\Pet();\n$form->setPetType(\"Dog\");\n$form->setName(\"Rex\");\n// set other fields\ntry {\n    $pet = $client->pets()->create($form);\n} catch (UnprocessableEntityException $e) {\n    var_dump($e->getErrors());\n}\n
+            $projectId = 12;
+            $apiKey = "asdasdasdasd";
+            $projectType = "market";
+            $botx = new Botx($projectId, $apiKey, $projectType);
 
+            $params = [];
+            // $params['tags'] = $request->get('tags');
+            // $params['per_page'] = $request->get('per_page');
+            // $params['sort'] = $request->get('sort');
+            // $params['direction'] = $request->get('direction');
+            // $params['market_hash_name'] = $request->get('market_hash_name');
+            // $params['market_hash_name_style'] = $request->get('market_hash_name_style');
+            // $params['bot_id'] = $request->get('bot_id');
+            // $params['min_price'] = $this->minPrice();
+            // $params['page'] = $request->get('page');
+
+            try {
+              $res = $botx->load_market_items($params);
+            } catch(BotxException $e) {
+              
+            }
 
   /market/deposit:
     post:
