@@ -10,6 +10,24 @@ info:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
   description: |
+
+    # Sockets
+
+    ```javascript
+    var centrifuge = new Centrifuge({
+      url: 'https://centrifugo.botx.pro/connection/websocket',
+      user: "public",
+      timestamp: "1513368108653",
+      token: "f0b5a6ddfe672a265889898e6b0ef593dc8c8b3eaba3d567b025f4204eb5f9eb"
+    });
+    ​
+    centrifuge.subscribe("news", function(message) {
+      console.log(message);
+    });
+​
+    centrifuge.connect();
+    ```
+
     # Item signature
     
     Item signature is a SHA256-hash that consists of:
