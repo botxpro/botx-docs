@@ -16,7 +16,9 @@ info:
     ```javascript
     var centrifuge = new Centrifuge({
       url: 'https://centrifugo.botx.pro/connection/websocket',
-      insecure: true
+      user: "public",
+      timestamp: "1513368108653",
+      token: "f0b5a6ddfe672a265889898e6b0ef593dc8c8b3eaba3d567b025f4204eb5f9eb"
     });
     ​
     centrifuge.subscribe("news", function(message) {
