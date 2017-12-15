@@ -24,7 +24,7 @@ info:
     centrifuge.subscribe("news", function(message) {
       console.log(message);
     });
-​
+
     centrifuge.connect();
     ```
 
