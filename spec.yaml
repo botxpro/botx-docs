@@ -148,7 +148,7 @@ paths:
             } catch(BotxException $e) {
               
             }
-        - lang: js
+        - lang: JS
           source: |
             const Botx = require('botxlib-node');
             const botxClient = new Botx({
