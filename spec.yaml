@@ -87,7 +87,7 @@ x-tagGroups:
   - name: Individual
     tags:
       - individual api
-   - name: Sockets & notifications
+  - name: Sockets & notifications
     tags:
       - sockets
       - notifications
@@ -142,7 +142,7 @@ paths:
             });
             let res = await botxClient.connect();
 
-  
+
 
   /market/items:
     get:
