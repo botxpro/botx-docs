@@ -75,6 +75,10 @@ tags:
   description: Market project types
 - name: individual api
   description: Virtual steam bot
+- name: sockets
+  description: Sockets
+- name: notifications
+  description: Notifications
 
 x-tagGroups:
   - name: Market
@@ -83,8 +87,62 @@ x-tagGroups:
   - name: Individual
     tags:
       - individual api
+   - name: Sockets & notifications
+    tags:
+      - sockets
+      - notifications
 
 paths:
+
+  /tokens:
+    get:
+      tags:
+        - sockets
+      summary: Get socket token
+      operationId: getSocketToken
+      description: |
+        Get socket token
+      parameters:
+      - in: query
+        name: project_id
+        description: project id
+        required: true
+        type: integer
+      - in: query
+        name: api_key
+        description: api key
+        required: true
+        type: string
+      responses:
+        200:
+          description: success response
+          schema:
+            type: object
+            properties: 
+              token:
+                type: string
+                example: d81cd61b5daca24df301233d5f024bd30ced4fc09b7f95fbeca38bedce1ba
+              timestamp:
+                type: string
+                example: "1518625773"
+              user:
+                type: string
+                example: "P12"
+        400:
+          description: bad input parameter
+
+      x-code-samples: 
+        - lang: JS
+          source: |
+            const Botx = require('botxlib-node');
+            const botxClient = new Botx({
+              projectId: 12,
+              apiKey: 'asdasdasdasd',
+              projectType: 'market'
+            });
+            let res = await botxClient.connect();
+
+  
 
   /market/items:
     get:
