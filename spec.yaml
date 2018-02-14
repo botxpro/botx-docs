@@ -213,6 +213,28 @@ paths:
         400:
           description: bad input parameter
 
+      x-code-samples:
+        - lang: JS
+          source: |
+            const Botx = require('botxlib-node');
+            const botxClient = new Botx({
+              projectId: 12,
+              apiKey: 'asdasdasdasd',
+              projectType: 'market'
+            });
+            const res = await botxClient.deposit({
+              "uid": "76561118123456789",
+              "token": "bT7eJeTC",
+              "message": "hello, my dear friend!",
+              "their_items": [
+                {
+                  "assetid": "11123456789",
+                  "contextid": 2,
+                  "appid": 730
+                }
+              ]
+            });
+
   /market/withdraw:
     post:
       tags:
@@ -263,6 +285,28 @@ paths:
             $ref: '#/definitions/Transaction'
         400:
           description: bad input parameter
+
+      x-code-samples:
+        - lang: JS
+          source: |
+            const Botx = require('botxlib-node');
+            const botxClient = new Botx({
+              projectId: 12,
+              apiKey: 'asdasdasdasd',
+              projectType: 'market'
+            });
+            const res = await botxClient.withdraw({
+              "uid": "76561118123456789",
+              "token": "bT7eJeTC",
+              "message": "hello, my dear friend!",
+              "my_items": [
+                {
+                  "assetid": "11123456789",
+                  "contextid": 2,
+                  "appid": 730
+                }
+              ]
+            });
 
   /market/inventories:
     get:
