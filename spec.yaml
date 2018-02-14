@@ -148,6 +148,20 @@ paths:
             } catch(BotxException $e) {
               
             }
+        - lang: js
+          source: |
+            const Botx = require('botxlib-node');
+            const botxClient = new Botx({
+              projectId: 12,
+              apiKey: 'asdasdasdasd',
+              projectType: 'market'
+            });
+
+            const res = await botxClient.loadMarketItems({
+              page: 1,
+              perPage: 40
+            });
+
 
   /market/deposit:
     post:
