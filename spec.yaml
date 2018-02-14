@@ -156,7 +156,7 @@ paths:
               apiKey: 'asdasdasdasd',
               projectType: 'market'
             });
-            const res = await botxClient.loadMarketItems({
+            let res = await botxClient.loadMarketItems({
               page: 1,
               perPage: 40
             });
@@ -222,7 +222,7 @@ paths:
               apiKey: 'asdasdasdasd',
               projectType: 'market'
             });
-            const res = await botxClient.deposit({
+            let res = await botxClient.deposit({
               "uid": "76561118123456789",
               "token": "bT7eJeTC",
               "message": "hello, my dear friend!",
@@ -295,7 +295,7 @@ paths:
               apiKey: 'asdasdasdasd',
               projectType: 'market'
             });
-            const res = await botxClient.withdraw({
+            let res = await botxClient.withdraw({
               "uid": "76561118123456789",
               "token": "bT7eJeTC",
               "message": "hello, my dear friend!",
@@ -350,7 +350,7 @@ paths:
               apiKey: 'asdasdasdasd',
               projectType: 'market'
             });
-            const res = await botxClient.loadUserInventory({
+            let res = await botxClient.loadUserInventory({
               force: false
             });
 
