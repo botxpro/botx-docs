@@ -156,7 +156,6 @@ paths:
               apiKey: 'asdasdasdasd',
               projectType: 'market'
             });
-
             const res = await botxClient.loadMarketItems({
               page: 1,
               perPage: 40
@@ -298,6 +297,18 @@ paths:
               $ref: '#/definitions/SteamItem'
         400:
           description: bad input parameter
+      x-code-samples:
+        - lang: JS
+          source: |
+            const Botx = require('botxlib-node');
+            const botxClient = new Botx({
+              projectId: 12,
+              apiKey: 'asdasdasdasd',
+              projectType: 'market'
+            });
+            const res = await botxClient.loadUserInventory({
+              force: false
+            });
 
 #############################################
 
