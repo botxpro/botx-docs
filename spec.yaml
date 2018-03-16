@@ -554,6 +554,11 @@ paths:
             bot_id:
               type: string
               example: '76561198351597364'
+            action:
+              type: string
+              enum:
+                - accept
+                - decline
       responses:
         200:
           description: success response
