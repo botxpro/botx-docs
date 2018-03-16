@@ -524,6 +524,44 @@ paths:
         400:
           description: bad input parameter
 
+    put:
+      tags:
+        - individual api
+      summary: Respond to tradeoffer
+      operationId: respondToOffer
+      description: |
+        Respond to tradeoffer
+      parameters:
+      - in: body
+        name: body
+        required: true
+        schema:
+          type: object
+          properties: 
+            api_key: 
+              type: string
+              example: "dknsAKJNKDNASKDNksNDskdNSDKNKJNDkNASDKJnskjDNKSADNsjd"
+            project_id: 
+              type: integer
+              example: 12
+            offer_id:
+              type: string
+              example: '3077692908'
+            partner:
+              type: string
+              example: '76561198351597323'
+              description: Sender id
+            bot_id:
+              type: string
+              example: '76561198351597364'
+      responses:
+        200:
+          description: success response
+          schema:
+            $ref: '#/definitions/Transaction'
+        400:
+          description: bad input parameter
+
   /individual/tradeoffers/{tradeoffer_id}:
     get:
       tags:
@@ -555,6 +593,8 @@ paths:
             $ref: '#/definitions/TradeOffer'
         400:
           description: bad input parameter
+
+    
 
   /individual/inventories:
     get:
